@@ -1,0 +1,5 @@
+/nbproject/
+/nbproject/private/
+/vendor/
+/logs/
+composer.lock
