@@ -1,4 +1,5 @@
 ﻿<!doctype html>
+
 <html lang="de">
     <head>
         <title>TicSys</title>
@@ -26,7 +27,6 @@
             </div>
 
             <div id="content">
-
                 <div class="event-info">
                     <h2>Foo Fighters</h2>
                     <h3>12 Januar 2018</h3>
@@ -54,7 +54,7 @@
             </div>
 
             <div id="footer">
-                <p>Copyright &copy; 2017 TicSys</p>
+                <p>Copyright &copy; 2017 TicSys, <?php echo date("d.m.Y H:i:s"); ?></p>
             </div>
         </div>
     </body>
