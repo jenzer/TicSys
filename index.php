@@ -27,7 +27,11 @@
                         '/kontakt' => 'Kontakt'
                     );
                     foreach ($menu as $href => $title) {
-                        echo "<li><a href=\"$href\">$title</a></li>\n";
+                        $liContent = $title;
+                        if ($href != strtolower($_SERVER['REQUEST_URI'])) {
+                            $liContent = "<a href=\"$href\">$title</a>";
+                        }
+                        echo "<li>$liContent</li>\n";
                     }
                     ?>
                 </ul>
