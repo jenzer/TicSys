@@ -19,10 +19,17 @@
 
             <div id="menu">
                 <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/kontakt">Kontakt</a></li>
+                    <?php
+                    $menu = array(
+                        '/home' => 'Home',
+                        '/events' => 'Events',
+                        '/faq' => 'FAQ',
+                        '/kontakt' => 'Kontakt'
+                    );
+                    foreach ($menu as $href => $title) {
+                        echo "<li><a href=\"$href\">$title</a></li>\n";
+                    }
+                    ?>
                 </ul>
             </div>
 
