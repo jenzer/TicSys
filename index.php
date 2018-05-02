@@ -1,4 +1,7 @@
 ﻿<!doctype html>
+<?php
+include_once 'config/config.php';
+?>
 
 <html lang="de">
     <head>
@@ -21,10 +24,10 @@
                 <ul>
                     <?php
                     $menu = array(
-                        '/home' => 'Home',
-                        '/events' => 'Events',
-                        '/faq' => 'FAQ',
-                        '/kontakt' => 'Kontakt'
+                        URI_HOME => 'Home',
+                        URI_EVENTS => 'Events',
+                        URI_FAQ => 'FAQ',
+                        URI_KONTAKT => 'Kontakt'
                     );
                     foreach ($menu as $href => $title) {
                         $liContent = $title;
