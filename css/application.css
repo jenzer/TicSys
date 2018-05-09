@@ -2,6 +2,7 @@ body {
     font-family: Georgia, serif;
     font-size: 100%;
     line-height: 1.5em;
+    color: #5C5B5B;
     background: #E0DCDC url("/images/body-bg.png") repeat-x top left;
 }
 
@@ -16,8 +17,16 @@ h1,h2,h3,h4 {
     font-weight: normal;
 }
 
+a, a:focus, a:hover {
+    outline: none;
+}
+
 .event-info {
     border-bottom: 1px solid #D4D4D4;
+}
+.event-info a {
+    color: #5C5B5B;
+    text-decoration: none;
 }
 
 #header, #footer, #content {
