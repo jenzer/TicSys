@@ -41,6 +41,9 @@ include_once 'config/config.php';
                     case URI_EVENTS:
                         include_once 'controller/eventscontroller.php';
                         break;
+                    case URI_KONTAKT:
+                        include_once 'controller/contactcontroller.php';
+                        break;
                 }
                 ?>
             </div>
