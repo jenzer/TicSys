@@ -25,8 +25,8 @@ if (preg_match('@/success$@i', $_SERVER['REQUEST_URI'])) {
         }
     }
     ?>
-    <form id="contactform" action="<?php echo URI_KONTAKT ?>" method="post" name="contactform">
-        <label for="contactform-subject">Betreff</label>
+    <form id="contactform" action="<?php URI_KONTAKT ?>" method="post" name="contactform">
+        <label for="contactform-subject" class="required">Betreff</label>
         <input type="text" id="contactform-subject" name="subject" required autocomplete="off" list="subjects" <?php validate('subject', true); ?>>
         <datalist id="subjects">
             <option value="Bestellung">
@@ -36,8 +36,8 @@ if (preg_match('@/success$@i', $_SERVER['REQUEST_URI'])) {
             <option value="Generelles">
         </datalist>
 
-        <label for="contactform-message">Mitteilung</label>
-        <textarea id="contactform-message" name="message" rows="8" cols="50" required><?php
+        <label for="contactform-message" class="required">Mitteilung</label>
+        <textarea id="contactform-message" name="message" rows="8" cols="50" class="required" required><?php
     if (!empty($_POST['message'])) {
         echo $_POST['message'];
     }
@@ -52,7 +52,7 @@ if (preg_match('@/success$@i', $_SERVER['REQUEST_URI'])) {
         <label for="contactform-phone">Telefon-Nr.</label>
         <input type="tel" id="contactform-phone" name="phone" <?php validate('phone'); ?>>
 
-        <label for="contactform-email">Email-Adresse</label>
+        <label for="contactform-email" class="required">Email-Adresse</label>
         <input type="email" id="contactform-email" name="email" required <?php validate('email', true); ?>>
 
         <label for="contactform-newsletter">Newsletter abonnieren</label>

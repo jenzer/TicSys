@@ -34,6 +34,14 @@ a, a:focus, a:hover {
 #menu a {
     color: #FFFFFF;
     text-decoration: none;
+    padding: 1px 4px;
+}
+
+#menu a.selected, #menu a:hover {
+    background-color: #2a9898;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #menu ul {
@@ -47,9 +55,9 @@ a, a:focus, a:hover {
     padding-right: 40px;
 }
 
-/*#menu ul li:first-child {
-    padding-left: 30px;
-}*/
+#menu ul li:first-child {
+    padding-left: 26px;
+}
 
 .event-info {
     border-bottom: 1px solid #D4D4D4;
@@ -87,6 +95,10 @@ a, a:focus, a:hover {
 
 #contactform .missing {
     border: 2px solid #36B3B3;
+}
+
+#contactform label.required:after {
+    content: " *";
 }
 
 #feedback {

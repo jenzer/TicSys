@@ -25,11 +25,7 @@ include_once 'config/config.php';
                     <?php
                     $currentUri = getCurrentURI();
                     foreach (getMenu() as $href => $title) {
-                        $liContent = $title;
-                        if ($href != $currentUri) {
-                            $liContent = "<a href=\"$href\">$title</a>";
-                        }
-                        echo "<li>$liContent</li>\n";
+                        echo "<li><a href=\"$href\" ".(($href == $currentUri) ? "class=\"selected\" ": "").">$title</a></li>\n";
                     }
                     ?>
                 </ul>
