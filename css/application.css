@@ -45,3 +45,7 @@ a, a:focus, a:hover {
 #contactform #contactform-name {
     display: none;
 }
+
+#contactform .missing {
+    border: 2px solid #36B3B3;
+}
