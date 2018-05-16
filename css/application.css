@@ -87,7 +87,16 @@ a, a:focus, a:hover {
 
 #contactform input, #contactform textarea {
     display: block;
-} 
+    border: 1px solid #A0A0A0;
+    margin-bottom: 15px;
+}
+
+#contactform input[type="text"], 
+#contactform input[type="tel"], 
+#contactform input[type="email"], 
+#contactform textarea {
+    width: 400px;
+}
 
 #contactform #contactform-name {
     display: none;
@@ -97,8 +106,33 @@ a, a:focus, a:hover {
     border: 2px solid #36B3B3;
 }
 
+#contactform label {
+    display: block;
+    float: left;
+    width: 180px;
+    margin-bottom: 15px;
+}
+
+#contactform input, #contactform label {
+    height: 22px;
+    line-height: 22px;
+}
+
 #contactform label.required:after {
     content: " *";
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 5px 0 #2a9898;
+}
+
+#contactform input[type="submit"] {
+    width: 200px;
+    height: 24px;
+    margin-left: 180px;
+    color: white;
+    background-color: #2a9898;
+    border: 1px solid #5C5B5B;
 }
 
 #feedback {
