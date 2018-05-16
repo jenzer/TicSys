@@ -37,3 +37,11 @@ a, a:focus, a:hover {
     color: white;
     background-color: #6E6E6E;
 }
+
+#contactform input, #contactform textarea {
+    display: block;
+} 
+
+#contactform #contactform-name {
+    display: none;
+}
