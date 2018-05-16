@@ -23,10 +23,19 @@ a, a:focus, a:hover {
 
 .event-info {
     border-bottom: 1px solid #D4D4D4;
+    padding: 20px 0;
 }
 .event-info a {
     color: #5C5B5B;
     text-decoration: none;
+}
+.event-info.list img {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+.event-info h2 {
+    margin-top: 0;
 }
 
 #header, #footer, #content {
@@ -48,4 +57,8 @@ a, a:focus, a:hover {
 
 #contactform .missing {
     border: 2px solid #36B3B3;
+}
+
+.clear {
+    clear: both;
 }

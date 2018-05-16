@@ -24,28 +24,34 @@ if ($handle !== false) {
             }
         }
         if (!empty($selectedEvent)) { // Event with transmitted ID was found
-            echo <<<EVENT
-        
-            <div class="event-info">
-                <h2>{$event[1]}</h2>
-                <h3>{$event[2]}</h3>
-                <p><img src="/resources/{$event[3]}" alt="{$event[1]}" /></p>
-                <p>{$event[5]}</p>
-            </div>
-        
-EVENT;
+            echo "<div class=\"event-info\">\n";
+            echo "<h2>{$event[1]}</h2>\n";
+            echo "<h3>{$event[2]}</h3>\n";
+            echo "<p><img src=\"/resources/{$event[3]}\" alt=\"{$event[1]}\" /></p>\n";
+            echo "<p>{$event[5]}</p>\n";
+            
+            if($event[0] == 1) {
+                echo "<video controls width=\"600\" height=\"420\" ";
+                echo "poster=\"/resources/videos/FooFighters-ThePretender.png\" preload=\"none\">\n";
+                echo "<source src=\"/resources/videos/FooFighters-ThePretender.mp4\" type=\"video/mp4\">\n";
+                echo "<source src=\"/resources/videos/FooFighters-ThePretender.ogv\" type=\"video/ogg\">\n";
+                echo "<iframe width=\"600\" height=\"338\" src=\"http://www.youtube.com/embed/SBjQ9tuuTJQ\" frameborder=\"0\" allowfullscreen></iframe>";
+                echo "</video>\n";
+            }
+			echo "</div>\n";
         }
     } else {
         while (!feof($handle)) {
             $event = fgetcsv($handle);
-            $url =  "$baseUrl/{$event[0]}-" . encodeUrl("{$event[1]}-{$event[2]}");
+            $url = "$baseUrl/{$event[0]}-" . encodeUrl("{$event[1]}-{$event[2]}");
             echo <<<EVENT
         
-            <div class="event-info">
+            <div class="event-info list">
                 <a href="$url">
                     <h2>{$event[1]}</h2>
                     <h3>{$event[2]}</h3>
                     <p><img src="/resources/{$event[4]}" alt="{$event[1]}" />{$event[5]}</p>
+                    <div class="clear"></div>
                 </a>
             </div>
         
