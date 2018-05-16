@@ -52,6 +52,7 @@ include_once 'config/config.php';
                 <p>Copyright &copy; 2017 TicSys, <?php echo date("d.m.Y H:i:s"); ?></p>
             </div>
         </div>
+        <a id="feedback" href="<?php echo URI_KONTAKT ?>"><img src="/images/feedback.png" border="0"></a>
     </body>
 </html>
 <?php
@@ -77,7 +78,7 @@ function getCurrentURI() {
         return $_SERVER['REQUEST_URI'];
     } else {
         foreach (array_keys(getMenu()) as $href) {
-            if(preg_match("@^$href@", $_SERVER['REQUEST_URI'])) {
+            if (preg_match("@^$href@", $_SERVER['REQUEST_URI'])) {
                 return $href;
             }
         }

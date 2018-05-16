@@ -47,6 +47,10 @@ a, a:focus, a:hover {
     padding-right: 40px;
 }
 
+/*#menu ul li:first-child {
+    padding-left: 30px;
+}*/
+
 .event-info {
     border-bottom: 1px solid #D4D4D4;
     padding: 20px 0;
@@ -83,6 +87,12 @@ a, a:focus, a:hover {
 
 #contactform .missing {
     border: 2px solid #36B3B3;
+}
+
+#feedback {
+    position: fixed;
+    right: 0px;
+    top: 0px;
 }
 
 .clear {
