@@ -2,6 +2,7 @@
 
 include_once 'lib/CSVAdapter.php';
 include_once 'model/Event.php';
+include_once 'model/MusicEvent.php';
 include_once 'model/Artist.php';
 
 $csvAdapter = new CSVAdapter("{$_SERVER['DOCUMENT_ROOT']}/resources/eventlist.csv");

@@ -52,7 +52,7 @@ class CSVAdapter {
             while (!feof($handle)) {
                 $entry = fgetcsv($handle);
                 $artist = new Artist($entry[1], $entry[3], $entry[4], $entry[5]);
-                $event = new Event($entry[0]);
+                $event = new MusicEvent($entry[0]);
                 $event->setName($artist->getName());
                 $event->setStarttime($entry[2]);
                 $event->setArtist($artist);

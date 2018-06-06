@@ -10,25 +10,19 @@ class Event {
      * Event ID
      * @var int 
      */
-    private $id;
+    protected $id;
 
     /**
      * Name of the event
      * @var string 
      */
-    private $name;
+    protected $name;
 
     /**
      * Event start time, Unix Timestamp Format
      * @var int 
      */
-    private $starttime;
-
-    /**
-     * The artist object
-     * @var Artist 
-     */
-    private $artist;
+    protected $starttime;
 
     public function getId() {
         return $this->id;
@@ -48,14 +42,6 @@ class Event {
 
     public function setStarttime($starttime) {
         $this->starttime = $starttime;
-    }
-
-    public function getArtist() {
-        return $this->artist;
-    }
-
-    public function setArtist(Artist $artist) {
-        $this->artist = $artist;
     }
 
 }
