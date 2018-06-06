@@ -1,36 +1,25 @@
 <?php
 
-/*
- * event csv structure
- * ---------------
- * 0 => ID
- * 1 => Title
- * 2 => Date
- * 3 => Image
- * 4 => Image Thumbnail
- * 5 => Description
- */
-$handle = fopen("{$_SERVER['DOCUMENT_ROOT']}/resources/eventlist.csv", "r");
-if ($handle !== false) {
-    $baseUrl = URI_EVENTS; // needed since constants cannot be used in heredoc
-    $matches = array();
-    if (preg_match("@^$baseUrl/([0-9]+)@", $_SERVER['REQUEST_URI'], $matches)) {
-        $selectedEvent = array();
-        while (!feof($handle)) {
-            $event = fgetcsv($handle);
-            if ($matches[1] == $event[0]) {
-                $selectedEvent = $event;
-                break;
-            }
-        }
-        if (!empty($selectedEvent)) { // Event with transmitted ID was found
-            echo "<div class=\"event-info\">\n";
-            echo "<h2>{$event[1]}</h2>\n";
-            echo "<h3>{$event[2]}</h3>\n";
-            echo "<p><img src=\"/resources/{$event[3]}\" alt=\"{$event[1]}\" /></p>\n";
-            echo "<p>{$event[5]}</p>\n";
-            
-            if($event[0] == 1) {
+include_once 'lib/CSVAdapter.php';
+include_once 'model/Event.php';
+include_once 'model/Artist.php';
+
+$csvAdapter = new CSVAdapter("{$_SERVER['DOCUMENT_ROOT']}/resources/eventlist.csv");
+
+$baseUrl = URI_EVENTS; // needed since constants cannot be used in heredoc
+$matches = array();
+if (preg_match("@^$baseUrl/([0-9]+)@", $_SERVER['REQUEST_URI'], $matches)) {
+    $event = $csvAdapter->getEvent($matches[1]);
+    if (!empty($event)) { // Event with transmitted ID was found
+        echo "<div class=\"event-info\">\n";
+        echo "<h2>{$event->getName()}</h2>\n";
+        echo "<h3>" . date("d.m.Y H:i", $event->getStarttime()) . "</h3>\n";
+        $artist = $event->getArtist();
+        if ($artist instanceof Artist) {
+            echo "<p><img src=\"/resources/{$artist->getImage()}\" alt=\"{$artist->getName()}\" /></p>\n";
+            echo "<p>{$artist->getDescription()}</p>\n";
+
+            if ($event->getId() == 1) {
                 echo "<video controls width=\"600\" height=\"420\" ";
                 echo "poster=\"/resources/videos/FooFighters-ThePretender.png\" preload=\"none\">\n";
                 echo "<source src=\"/resources/videos/FooFighters-ThePretender.mp4\" type=\"video/mp4\">\n";
@@ -38,27 +27,27 @@ if ($handle !== false) {
                 echo "<iframe width=\"600\" height=\"338\" src=\"http://www.youtube.com/embed/SBjQ9tuuTJQ\" frameborder=\"0\" allowfullscreen></iframe>";
                 echo "</video>\n";
             }
-			echo "</div>\n";
         }
-    } else {
-        while (!feof($handle)) {
-            $event = fgetcsv($handle);
-            $url = "$baseUrl/{$event[0]}-" . encodeUrl("{$event[1]}-{$event[2]}");
-            echo <<<EVENT
+    }
+} else {
+    $eventList = $csvAdapter->getEventList();
+    foreach ($eventList as $event) {
+        $startTime = date("d.m.Y H:i", $event->getStarttime());
+        $url = "$baseUrl/{$event->getId()}-" . encodeUrl("{$event->getName()}-{$startTime}");
+        $artist = $event->getArtist();
+        echo <<<EVENT
         
             <div class="event-info list">
                 <a href="$url">
-                    <h2>{$event[1]}</h2>
-                    <h3>{$event[2]}</h3>
-                    <p><img src="/resources/{$event[4]}" alt="{$event[1]}" />{$event[5]}</p>
+                    <h2>{$event->getName()}</h2>
+                    <h3>{$startTime}</h3>
+                    <p><img src="/resources/{$artist->getImageThumb()}" alt="{$artist->getName()}" />{$artist->getDescription()}</p>
                     <div class="clear"></div>
                 </a>
             </div>
         
 EVENT;
-        }
     }
-    fclose($handle);
 }
 
 function encodeUrl($url) {
