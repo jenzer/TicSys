@@ -60,8 +60,13 @@ a, a:focus, a:hover {
 }
 
 .event-info {
-    border-bottom: 1px solid #D4D4D4;
     padding: 20px 0;
+}
+.event-info.list {
+    border-bottom: 1px solid #D4D4D4;
+}
+.event-info.list:last-child {
+    border-bottom: none;
 }
 .event-info a {
     color: #5C5B5B;
@@ -87,7 +92,6 @@ a, a:focus, a:hover {
 
 #contactform input, #contactform textarea {
     display: block;
-    border: 1px solid #A0A0A0;
     margin-bottom: 15px;
 }
 
@@ -96,13 +100,14 @@ a, a:focus, a:hover {
 #contactform input[type="email"], 
 #contactform textarea {
     width: 400px;
+    border: 1px solid #A0A0A0;
 }
 
 #contactform #contactform-name {
     display: none;
 }
 
-#contactform .missing {
+#contactform input.missing, #contactform textarea.missing {
     border: 2px solid #36B3B3;
 }
 
