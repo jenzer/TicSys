@@ -3,7 +3,7 @@ body {
     font-size: 100%;
     line-height: 1.5em;
     color: #5C5B5B;
-    background: #E0DCDC url("/images/body-bg.png") repeat-x top left;
+    background: #e0dcdc url("/images/body-bg.png") repeat-x top left;
 }
 
 #wrap {
@@ -17,22 +17,29 @@ h1,h2,h3,h4 {
     font-weight: normal;
 }
 
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.4em;
+}
+
 a, a:focus, a:hover {
     outline: none;
 }
 
 #menu {
     margin: 0;
-    color: #FFFFFF;
-    background-color: #2FACAC;
+    color: #ffffff;
+    background-color: #2facac;
     height: 50px;
     line-height: 50px;
     font-size: 1.2em;
-    border-top: solid 1px #5AD7D7;
+    border-top: solid 1px #5ad7d7;
 }
 
 #menu a {
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     padding: 1px 4px;
 }
@@ -63,7 +70,7 @@ a, a:focus, a:hover {
     padding: 20px 0;
 }
 .event-info.list {
-    border-bottom: 1px solid #D4D4D4;
+    border-bottom: 1px solid #d4d4d4;
 }
 .event-info.list:last-child {
     border-bottom: none;
@@ -87,7 +94,7 @@ a, a:focus, a:hover {
 
 #header, #footer {
     color: white;
-    background-color: #6E6E6E;
+    background-color: #6e6e6e;
 }
 
 #contactform input, #contactform textarea {
@@ -100,7 +107,7 @@ a, a:focus, a:hover {
 #contactform input[type="email"], 
 #contactform textarea {
     width: 400px;
-    border: 1px solid #A0A0A0;
+    border: 1px solid #a0a0a0;
 }
 
 #contactform #contactform-name {
@@ -108,7 +115,7 @@ a, a:focus, a:hover {
 }
 
 #contactform input.missing, #contactform textarea.missing {
-    border: 2px solid #36B3B3;
+    border: 2px solid #36b3b3;
 }
 
 #contactform label {
@@ -137,7 +144,21 @@ input:focus, textarea:focus {
     margin-left: 180px;
     color: white;
     background-color: #2a9898;
-    border: 1px solid #5C5B5B;
+    border: 1px solid #5c5b5b;
+}
+
+#faqs dt {
+    background-color: #bebebe;
+    padding: 4px;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}
+#faqs dd {
+    display: none;
+    background-color: #dfdfdf;
+    margin: 0;
+    padding: 8px 4px;
+    border-bottom: 1px solid white;
 }
 
 #feedback {
