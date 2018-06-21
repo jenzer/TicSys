@@ -3,6 +3,8 @@
 include_once 'controller/Controller.php';
 include_once 'model/FAQ.php';
 include_once 'lib/MysqlAdapter.php';
+include_once 'view/View.php';
+include_once 'view/faq/FAQListView.php';
 
 class FAQController extends Controller {
 
@@ -13,12 +15,9 @@ class FAQController extends Controller {
     }
 
     protected function index() {
-        $faqList = $this->mysqlAdapter->getFAQs();
-        echo "<dl>\n";
-        foreach ($faqList as $faq) {
-            echo "<dt>{$faq->getQuestion()}</dt><dd>{$faq->getAnswer()}</dd>\n";
-        }
-        echo "</dl>\n";
+        $view = new FAQListView();
+        $view->assign('list', $this->mysqlAdapter->getFAQs());
+        $view->display();
     }
 
     protected function show() {
