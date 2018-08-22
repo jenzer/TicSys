@@ -51,6 +51,10 @@ include_once 'config/config.php';
                         include_once 'controller/ContactController.php';
                         $controller = new ContactController();
                         break;
+                    default :
+                        include_once 'controller/HomeController.php';
+                        $controller = new HomeController();
+                        break;
                 }
                 if ($controller != null) {
                     $controller->route();
