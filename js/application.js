@@ -4,13 +4,11 @@ $(document).ready(function() {
     }, function(){
         $(this).children('div.order').slideUp(100);
     });
+    
+    $("#faqs dt").on('click', function() {
+        $("#faqs dd").slideUp();
+        if ($(this).next().is(':hidden')) {
+            $(this).next("dd").slideDown();
+        }
+    });
 });
-
-function showHideFAQAnswer(el) {
-    var sibling = el.nextSibling;
-    if(sibling.style.display == 'block') {
-        sibling.style.display = 'none';
-    } else {
-        sibling.style.display = 'block';
-    }
-}
