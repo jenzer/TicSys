@@ -11,6 +11,7 @@ class EventListView extends View {
             echo <<<EVENT
         
             <div class="event-info list">
+                <div class="order"><a href="$url#order">Jetzt bestellen</a></div>
                 <a href="$url">
                     <h2>{$event->getName()}</h2>
                     <h3>{$startTime}</h3>

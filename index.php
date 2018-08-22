@@ -11,6 +11,7 @@ include_once 'config/config.php';
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="/css/application.css">
+        <script src="/js/vendor/jquery-3.2.1.min.js"></script>
         <script src="/js/application.js"></script>
         <script src="/js/timer.js"></script>
     </head>

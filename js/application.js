@@ -1,3 +1,10 @@
+$(document).ready(function() {
+    $(".event-info.list").hover(function(){
+        $(this).children('div.order').slideDown(100);
+    }, function(){
+        $(this).children('div.order').slideUp(100);
+    });
+});
 
 function showHideFAQAnswer(el) {
     var sibling = el.nextSibling;
