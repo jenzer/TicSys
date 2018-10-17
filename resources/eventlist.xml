@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE events SYSTEM "eventlist.dtd">
 <events>
-    <event id="1">
+    <event id="e1">
         <name>Foo Fighters</name>
         <starttime>2018-01-15T19:00:00Z</starttime>
         <prices>
@@ -23,7 +23,7 @@
             </videos>
         </artist>
     </event>
-    <event id="2">
+    <event id="e2">
         <name>Gavin Degraw</name>
         <starttime>2018-02-25T19:00:00Z</starttime>
         <prices>
@@ -39,7 +39,7 @@
             <videos></videos>
         </artist>
     </event>
-    <event id="3">
+    <event id="e3">
         <name>Keane</name>
         <starttime>2018-03-12T19:00:00Z</starttime>
         <prices>

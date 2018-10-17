@@ -1,0 +1,26 @@
+<!ELEMENT events (event)*>
+<!ELEMENT event (name, starttime, prices, artist)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT starttime (#PCDATA)>
+<!ELEMENT prices (price)+>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT artist (name, image, image-thumb, description, videos)>
+<!ELEMENT image (#PCDATA)>
+<!ELEMENT image-thumb (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT videos (video)*>
+<!ELEMENT video (source+, iframe?)>
+<!ELEMENT source EMPTY>
+<!ELEMENT iframe (#PCDATA)>
+
+<!ATTLIST event id ID #REQUIRED>
+<!ATTLIST price sector (A|B|C) #REQUIRED>
+<!ATTLIST price currency NMTOKEN #FIXED "CHF">
+<!ATTLIST video width NMTOKEN #REQUIRED>
+<!ATTLIST video height NMTOKEN #REQUIRED>
+<!ATTLIST video poster CDATA #IMPLIED>
+<!ATTLIST source src CDATA #REQUIRED>
+<!ATTLIST source type CDATA #REQUIRED>
+<!ATTLIST iframe width NMTOKEN #IMPLIED>
+<!ATTLIST iframe height NMTOKEN #IMPLIED>
+<!ATTLIST iframe src CDATA #REQUIRED>
