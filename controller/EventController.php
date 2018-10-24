@@ -1,6 +1,7 @@
 <?php
 
-include_once 'lib/CSVAdapter.php';
+include_once 'lib/XMLAdapter.php';
+include_once 'lib/EventListXMLAdapter.php';
 include_once 'controller/Controller.php';
 include_once 'model/Event.php';
 include_once 'model/MusicEvent.php';
@@ -11,21 +12,21 @@ include_once 'view/event/EventDetailView.php';
 
 class EventController extends Controller {
 
-    private $csvAdapter;
+    private $dataAdapter;
 
     function __construct() {
-        $this->csvAdapter = new CSVAdapter("{$_SERVER['DOCUMENT_ROOT']}/resources/eventlist.csv");
+        $this->dataAdapter = new EventListXMLAdapter("{$_SERVER['DOCUMENT_ROOT']}/resources/eventlist.xml");
     }
 
     protected function index() {
-        $eventList = $this->csvAdapter->getEventList();
+        $eventList = $this->dataAdapter->getEventList();
         $view = new EventListView();
         $view->assign('list', $eventList);
         $view->display();
     }
 
     protected function show() {
-        $event = $this->csvAdapter->getEvent($this->resourceId);
+        $event = $this->dataAdapter->getEvent($this->resourceId);
         if (!empty($event)) { // Event with transmitted ID was found
             $view = new EventDetailView();
             $view->assign('event', $event);
