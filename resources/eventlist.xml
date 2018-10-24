@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE events SYSTEM "eventlist.dtd">
 <events>
-    <event id="e1">
+    <musicevent id="e1" artist="a1">
         <name>Foo Fighters</name>
         <starttime>2018-01-15T19:00:00Z</starttime>
         <prices>
@@ -9,21 +8,8 @@
             <price sector="B" currency="CHF">55.00</price>
             <price sector="C" currency="CHF">40.00</price>
         </prices>
-        <artist>
-            <name>Foo Fighters</name>
-            <image>foo-fighters-600x420.jpg</image>
-            <image-thumb>foo-fighters-200x140.jpg</image-thumb>
-            <description>Foo Fighters ist die Band um den ehemaligen "Nirvana"-Schlagzeuger Dave Grohl. Anfangs ähnelte der Stil der heutigen Alternative/Rock-Truppe doch noch sehr dem grungigen Sound von Nirvana. Allerdings entwickelte sich die Band stets weiter und so können die Foo Fighters heute auf eine über 10-Jährige Bandgeschichte zurückblicken.</description>
-            <videos>
-                <video width="600" height="420" poster="/resources/videos/FooFighters-ThePretender.png">
-                    <source src="/resources/videos/FooFighters-ThePretender.mp4" type="video/mp4"/>
-                    <source src="/resources/videos/FooFighters-ThePretender.ogv" type="video/ogg"/>
-                    <iframe width="600" height="338" src="http://www.youtube.com/embed/SBjQ9tuuTJQ"></iframe>
-                </video>
-            </videos>
-        </artist>
-    </event>
-    <event id="e2">
+    </musicevent>
+    <musicevent id="e2" artist="a2">
         <name>Gavin Degraw</name>
         <starttime>2018-02-25T19:00:00Z</starttime>
         <prices>
@@ -31,15 +17,8 @@
             <price sector="B" currency="CHF">46.00</price>
             <price sector="C" currency="CHF">35.00</price>
         </prices>
-        <artist>
-            <name>Gavin Degraw</name>
-            <image>gavin-degraw-600x420.jpg</image>
-            <image-thumb>gavin-degraw-200x140.jpg</image-thumb>
-            <description>Bekannt wurde Gavin DeGraw als sein Song "I Don't Want to Be" als Titelsong der amerikanischen TV-Serie One Tree Hill verwendet wurde und die Single als Folge in die amerikanischen Singlecharts auf Platz 10 einstieg. 2005 erschien sein Debütalbum Chariot auch in Europa. Im Mai 2008 folgte sein zweites Studioalbum Gavin DeGraw. Seine Band, mit denen er sowohl in den Vereinigten Staaten als auch in Europa spielt besteht aus: Casey Twist (Bass), Jimmi Wallace (Hammond-Orgel), Joey "Coach" Hanna (Schlagzeug) und Brian Dennis (E-Gitarre).</description>
-            <videos></videos>
-        </artist>
-    </event>
-    <event id="e3">
+    </musicevent>
+    <musicevent id="e3" artist="a3">
         <name>Keane</name>
         <starttime>2018-03-12T19:00:00Z</starttime>
         <prices>
@@ -47,12 +26,32 @@
             <price sector="B" currency="CHF">52.00</price>
             <price sector="C" currency="CHF">45.00</price>
         </prices>
-        <artist>
-            <name>Keane</name>
-            <image>keane-600x420.jpg</image>
-            <image-thumb>keane-200x140.jpg</image-thumb>
-            <description>Keane ist eine englische Rockband aus Battle in East Sussex, die 1997 gegründet wurde. Das zentrale Instrument der Band ist das Yamaha CP80, ein halbakustischer Flügel, der alle erschienen Studioalben mit seinem signifikantem Klang massgeblich prägt. Am 7. Mai 2012 erschien das vierte Studioalbum Strangeland. Während Perfect Symmetry noch einem experimenteller Ausflug glich, kehrte die vierköpfige Band nun zum Erfolgsrezept der ersten beiden Alben zurück und baut erneut auf eingängige Klaviermelodien ganz im Stile des Piano Pop/Rocks.</description>
-            <videos></videos>
-        </artist>
-    </event>
+    </musicevent>
+    <artist id="a1">
+        <name>Foo Fighters</name>
+        <image>foo-fighters-600x420.jpg</image>
+        <image-thumb>foo-fighters-200x140.jpg</image-thumb>
+        <description>Foo Fighters ist die Band um den ehemaligen "Nirvana"-Schlagzeuger Dave Grohl. Anfangs ähnelte der Stil der heutigen Alternative/Rock-Truppe doch noch sehr dem grungigen Sound von Nirvana. Allerdings entwickelte sich die Band stets weiter und so können die Foo Fighters heute auf eine über 10-Jährige Bandgeschichte zurückblicken.</description>
+        <videos>
+            <video width="600" height="420" poster="/resources/videos/FooFighters-ThePretender.png">
+                <source src="/resources/videos/FooFighters-ThePretender.mp4" type="video/mp4"/>
+                <source src="/resources/videos/FooFighters-ThePretender.ogv" type="video/ogg"/>
+                <iframe width="600" height="338" src="http://www.youtube.com/embed/SBjQ9tuuTJQ"></iframe>
+            </video>
+        </videos>
+    </artist>
+    <artist id="a2">
+        <name>Gavin Degraw</name>
+        <image>gavin-degraw-600x420.jpg</image>
+        <image-thumb>gavin-degraw-200x140.jpg</image-thumb>
+        <description>Bekannt wurde Gavin DeGraw als sein Song "I Don't Want to Be" als Titelsong der amerikanischen TV-Serie One Tree Hill verwendet wurde und die Single als Folge in die amerikanischen Singlecharts auf Platz 10 einstieg. 2005 erschien sein Debütalbum Chariot auch in Europa. Im Mai 2008 folgte sein zweites Studioalbum Gavin DeGraw. Seine Band, mit denen er sowohl in den Vereinigten Staaten als auch in Europa spielt besteht aus: Casey Twist (Bass), Jimmi Wallace (Hammond-Orgel), Joey "Coach" Hanna (Schlagzeug) und Brian Dennis (E-Gitarre).</description>
+        <videos></videos>
+    </artist>
+    <artist id="a3">
+        <name>Keane</name>
+        <image>keane-600x420.jpg</image>
+        <image-thumb>keane-200x140.jpg</image-thumb>
+        <description>Keane ist eine englische Rockband aus Battle in East Sussex, die 1997 gegründet wurde. Das zentrale Instrument der Band ist das Yamaha CP80, ein halbakustischer Flügel, der alle erschienen Studioalben mit seinem signifikantem Klang massgeblich prägt. Am 7. Mai 2012 erschien das vierte Studioalbum Strangeland. Während Perfect Symmetry noch einem experimenteller Ausflug glich, kehrte die vierköpfige Band nun zum Erfolgsrezept der ersten beiden Alben zurück und baut erneut auf eingängige Klaviermelodien ganz im Stile des Piano Pop/Rocks.</description>
+        <videos></videos>
+    </artist>
 </events>
