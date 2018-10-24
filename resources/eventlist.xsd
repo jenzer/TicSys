@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="events">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="musicevent"/>
+        <xs:element maxOccurs="unbounded" ref="artist"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="musicevent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="starttime" type="xs:dateTime"/>
+        <xs:element ref="prices"/>
+      </xs:sequence>
+      <xs:attribute name="artist" use="required" type="xs:IDREF"/>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="prices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="price"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="price">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="currency" use="optional" type="currency" default="CHF"/>
+          <xs:attribute name="sector" use="required" type="sectorName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="currency">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:pattern value="[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sectorName">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="A"/>
+      <xs:enumeration value="B"/>
+      <xs:enumeration value="C"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="artist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="image" type="xs:anyURI"/>
+        <xs:element name="image-thumb" type="xs:anyURI"/>
+        <xs:element name="description" type="xs:string"/>
+        <xs:element ref="videos"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="videos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="video"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="video">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="source"/>
+        <xs:element minOccurs="0" ref="iframe"/>
+      </xs:sequence>
+      <xs:attribute name="width" use="required" type="xs:positiveInteger"/>
+      <xs:attribute name="height" use="required" type="xs:positiveInteger"/>
+      <xs:attribute name="poster" use="optional" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="source">
+    <xs:complexType>
+      <xs:attribute name="src" use="required" type="xs:anyURI"/>
+      <xs:attribute name="type" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="iframe">
+    <xs:complexType>
+      <xs:attribute name="width" use="required" type="xs:positiveInteger"/>
+      <xs:attribute name="height" use="required" type="xs:positiveInteger"/>
+      <xs:attribute name="src" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

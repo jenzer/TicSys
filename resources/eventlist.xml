@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<events>
+<events xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="eventlist.xsd">
     <musicevent id="e1" artist="a1">
         <name>Foo Fighters</name>
         <starttime>2018-01-15T19:00:00Z</starttime>
