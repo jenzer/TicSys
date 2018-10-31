@@ -32,7 +32,21 @@ class EventListXMLAdapter extends XMLAdapter {
         $xml->load($this->getFilePath());
 
         if ($xml->schemaValidate(str_replace('.xml', '.xsd', $this->getFilePath()))) {
-            
+            $xml = simplexml_load_file($this->getFilePath());
+
+            // read artists
+            $artists = array();
+            foreach ($xml->artist as $anArtist) {
+                $artist = new Artist($anArtist->name, $anArtist->image, $anArtist->{'image-thumb'}, $anArtist->description);
+                $artists[(string) $anArtist['id']] = $artist;
+            }
+            foreach ($xml->musicevent as $musicevent) {
+                $event = new MusicEvent(str_replace('e', '', (string) $musicevent['id']));
+                $event->setName($musicevent->name);
+                $event->setStarttime($musicevent->starttime);
+                $event->setArtist($artists[(string) $musicevent['artist']]);
+                $list[$event->getId()] = $event;
+            }
         }
         return $list;
     }
