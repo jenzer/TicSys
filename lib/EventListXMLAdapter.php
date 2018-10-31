@@ -38,6 +38,23 @@ class EventListXMLAdapter extends XMLAdapter {
             $artists = array();
             foreach ($xml->artist as $anArtist) {
                 $artist = new Artist($anArtist->name, $anArtist->image, $anArtist->{'image-thumb'}, $anArtist->description);
+
+                // add video if exists
+                $videos = $anArtist->videos;
+                if (isset($videos->video)) {
+                    foreach ($videos->video as $aVideo) {
+                        $video = new Video();
+                        $video->setWidth((string) $aVideo['width']);
+                        $video->setHeight((string) $aVideo['height']);
+                        $video->setPoster((string) $aVideo['poster']);
+
+                        foreach ($aVideo->source as $aSource) {
+                            $video->addSource((string) $aSource['type'], (string) $aSource['src']);
+                        }
+                        $artist->addVideo($video);
+                    }
+                }
+
                 $artists[(string) $anArtist['id']] = $artist;
             }
             foreach ($xml->musicevent as $musicevent) {

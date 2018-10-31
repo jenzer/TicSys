@@ -14,13 +14,20 @@ class EventDetailView extends View {
             echo "<p><img src=\"/resources/{$artist->getImage()}\" alt=\"{$artist->getName()}\" /></p>\n";
             echo "<p>{$artist->getDescription()}</p>\n";
 
-            if ($event->getId() == 1) {
-                echo "<video controls width=\"600\" height=\"420\" ";
-                echo "poster=\"/resources/videos/FooFighters-ThePretender.png\" preload=\"none\">\n";
-                echo "<source src=\"/resources/videos/FooFighters-ThePretender.mp4\" type=\"video/mp4\">\n";
-                echo "<source src=\"/resources/videos/FooFighters-ThePretender.ogv\" type=\"video/ogg\">\n";
-                echo "<iframe width=\"600\" height=\"338\" src=\"http://www.youtube.com/embed/SBjQ9tuuTJQ\" frameborder=\"0\" allowfullscreen></iframe>";
-                echo "</video>\n";
+            if ($artist->hasVideos()) {
+                foreach ($artist->getVideos() as $aVideo) {
+                    echo "<video ";
+                    if ($aVideo->getControls()) {
+                        echo "controls ";
+                    }
+                    echo "width=\"{$aVideo->getWidth()}\" height=\"{$aVideo->getHeight()}\" ";
+                    echo "poster=\"{$aVideo->getPoster()}\" preload=\"{$aVideo->getPreload()}\">\n";
+                    foreach ($aVideo->getSources() as $type => $src) {
+                        echo "<source src=\"$src\" type=\"$type\">\n";
+                    }
+                    echo $aVideo->getAltContent();
+                    echo "\n</video>\n";
+                }
             }
         }
         echo "</div>\n";
