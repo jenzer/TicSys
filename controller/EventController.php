@@ -30,7 +30,7 @@ class EventController extends Controller {
         $log = new Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'] . '/logs/', Psr\Log\LogLevel::INFO);
         $event = $this->dataAdapter->getEvent($this->resourceId);
         if (!empty($event)) { // Event with transmitted ID was found
-            $log->info('Show detail view of event ' . $this->resourceId);
+            $log->info('Show detail view of event ' . $event);
             $view = new EventDetailView();
             $view->event = $event;
             $view->display();

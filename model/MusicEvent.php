@@ -19,6 +19,10 @@ class MusicEvent extends Event {
     public function setArtist(Artist $artist) {
         $this->artist = $artist;
     }
-
+    
+    public function __toString() {
+        return "ID: {$this->getId()}, Name: {$this->getName()}, StartTime: {$this->getStarttime()}, Artist -> {$this->getArtist()}";
+    }
+    
 }
 

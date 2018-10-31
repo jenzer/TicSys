@@ -47,6 +47,13 @@ class Artist {
         $this->description = $description;
     }
 
+    public function getShortDescription($maxLength = 40) {
+        if (strlen($this->description) > $maxLength) {
+            return substr($this->description, 0, $maxLength - 3). "...";
+        }
+        return $this->description;
+    }
+
     public function getVideos() {
         return $this->videos;
     }
@@ -61,6 +68,10 @@ class Artist {
 
     public function hasVideos() {
         return !empty($this->videos);
+    }
+
+    public function __toString() {
+        return "Name: {$this->name}, Description: {$this->getShortDescription()}, Videos: " . (($this->hasVideos()) ? 'yes' : 'no');
     }
 
 }
