@@ -21,7 +21,7 @@ class HomeController extends Controller {
     protected function index() {
         $eventList = $this->adapter->getEventList();
         $view = new HomeView();
-        $view->assign('list', $eventList);
+        $view->list = $eventList;
         $view->display();
     }
 

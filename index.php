@@ -1,6 +1,7 @@
 ﻿<!doctype html>
 <?php
 include_once 'config/config.php';
+require 'vendor/autoload.php';
 ?>
 
 <html lang="de">

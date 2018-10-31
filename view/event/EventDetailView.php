@@ -3,7 +3,7 @@
 class EventDetailView extends View {
 
     public function display() {
-        $event = $this->vars['event'];
+        $event = $this->event;
         echo "<div class=\"event-info\">\n";
         echo "<h1>{$event->getName()}</h1>\n";
         $date = new DateTime($event->getStarttime());

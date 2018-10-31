@@ -49,5 +49,17 @@ final class MysqlAdapter {
         return $list;
     }
 
+    public function __sleep() {
+        return array('host', 'user', 'password', 'db');
+    }
+
+    public function __wakeup() {
+        $this->open();
+    }
+
+    public function __toString() {
+        return "Host: {$this->host}, DB: {$this->db}, user: {$this->user}";
+    }
+
 }
 

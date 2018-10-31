@@ -7,7 +7,7 @@ class HomeView extends View {
         echo "<div id=\"homeslider-wrap\">\n";
         echo "  <div id=\"homeslider\">\n";
         echo "    <ul>\n";
-        foreach ($this->vars['list'] as $event) {
+        foreach ($this->list as $event) {
             $date = new DateTime($event->getStarttime());
             $date->setTimezone(new DateTimeZone('Europe/Zurich'));
             $startTime = $date->format('d.m.Y H:i');
