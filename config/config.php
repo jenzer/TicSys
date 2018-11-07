@@ -5,6 +5,8 @@ define('URI_HOME', '/home');
 define('URI_EVENTS', '/events');
 define('URI_FAQ', '/faq');
 define('URI_KONTAKT', '/kontakt/new');
+define('URI_REGISTRATION', '/registration/new');
+define('URI_LOGIN', '/login/new');
 
 # DB configs
 define('DB_HOST', '127.0.0.1');

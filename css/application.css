@@ -28,6 +28,16 @@ a, a:focus, a:hover {
     outline: none;
 }
 
+#logo {
+    float: left;
+    padding: 30px;
+}
+#meta-navigation {
+    float: right;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
 #menu {
     margin: 0;
     color: #ffffff;
@@ -38,7 +48,7 @@ a, a:focus, a:hover {
     border-top: solid 1px #5ad7d7;
 }
 
-#menu a {
+#menu a, #meta-navigation a {
     color: #ffffff;
     text-decoration: none;
     padding: 1px 4px;
@@ -51,7 +61,7 @@ a, a:focus, a:hover {
     border-radius: 5px;
 }
 
-#menu ul {
+#menu ul, #meta-navigation ul {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -60,6 +70,10 @@ a, a:focus, a:hover {
 #menu ul li {
     float: left;
     padding-right: 40px;
+}
+
+#meta-navigation ul li {
+    float: left;
 }
 
 #menu ul li:first-child {
@@ -100,7 +114,7 @@ a, a:focus, a:hover {
     margin-top: 0;
 }
 
-#header, #footer, #content {
+#footer, #content {
     padding: 30px;
 }
 
@@ -109,40 +123,44 @@ a, a:focus, a:hover {
     background-color: #6e6e6e;
 }
 
-#contactform input, #contactform textarea {
+#contactform input, #registrationform input, #loginform input,
+#contactform textarea, #registrationform textarea, #loginform textarea {
     display: block;
     margin-bottom: 15px;
 }
 
-#contactform input[type="text"], 
-#contactform input[type="tel"], 
-#contactform input[type="email"], 
-#contactform textarea {
+#contactform input[type="text"], #registrationform input[type="text"], #loginform input[type="text"],
+#contactform input[type="tel"], #registrationform input[type="tel"], #loginform input[type="tel"], 
+#contactform input[type="email"], #registrationform input[type="email"], #loginform input[type="email"], 
+#contactform input[type="password"], #registrationform input[type="password"], #loginform input[type="password"], 
+#contactform textarea, #registrationform textarea, #loginform textarea {
     width: 400px;
     border: 1px solid #a0a0a0;
 }
 
-#contactform #contactform-name {
+#contactform #contactform-name, #registrationform #registrationform-name, #loginform #loginform-name {
     display: none;
 }
 
-#contactform input.missing, #contactform textarea.missing {
+#contactform input.missing, #registrationform input.missing, #loginform input.missing, 
+#contactform textarea.missing, #registrationform textarea.missing, #loginform textarea.missing {
     border: 2px solid #36b3b3;
 }
 
-#contactform label {
+#contactform label, #registrationform label, #loginform label {
     display: block;
     float: left;
     width: 180px;
     margin-bottom: 15px;
 }
 
-#contactform input, #contactform label {
+#contactform input, #registrationform input, #loginform input, 
+#contactform label, #registrationform label, #loginform label {
     height: 22px;
     line-height: 22px;
 }
 
-#contactform label.required:after {
+#contactform label.required:after, #registrationform label.required:after, #loginform label.required:after {
     content: " *";
 }
 
@@ -150,13 +168,16 @@ input:focus, textarea:focus {
     box-shadow: 0 0 5px 0 #2a9898;
 }
 
-#contactform input[type="submit"] {
+#contactform input[type="submit"], #registrationform input[type="submit"], #loginform input[type="submit"] {
     width: 200px;
     height: 24px;
     margin-left: 180px;
     color: white;
     background-color: #2a9898;
     border: 1px solid #5c5b5b;
+}
+.notification {
+    color: #2FACAC;
 }
 
 #faqs dt {

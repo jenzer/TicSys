@@ -23,6 +23,24 @@ require 'vendor/autoload.php';
                 <div id="logo">
                     <a href="/home"><img src="/images/logo-white.png" alt="TicSys Logo" width="295" height="70" /></a>
                 </div>
+                <div id="meta-navigation">
+                    <ul>
+                        <?php
+                        $metaMenu = getMetaMenu();
+                        $metaMenuCount = count($metaMenu);
+                        $counter = 0;
+                        foreach ($metaMenu as $href => $title) {
+                            $counter += 1;
+                            echo "<li><a href=\"$href\">$title</a>";
+                            if ($counter < $metaMenuCount) {
+                                echo "|";
+                            }
+                            echo "</li>\n";
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
 
             <div id="menu">
@@ -51,6 +69,14 @@ require 'vendor/autoload.php';
                     case URI_KONTAKT:
                         include_once 'controller/ContactController.php';
                         $controller = new ContactController();
+                        break;
+                    case URI_REGISTRATION:
+                        include_once 'controller/RegistrationController.php';
+                        $controller = new RegistrationController();
+                        break;
+                    case URI_LOGIN:
+                        include_once 'controller/LoginController.php';
+                        $controller = new LoginController();
                         break;
                     default :
                         include_once 'controller/HomeController.php';
@@ -85,14 +111,25 @@ function getMenu() {
 }
 
 /**
+ * @return array containing all meta menu items in format [base href] => [title]
+ */
+function getMetaMenu() {
+    return array(
+        URI_LOGIN => 'Login',
+        URI_REGISTRATION => 'Registration'
+    );
+}
+
+/**
  * @return string the requested menu item URI
  */
 function getCurrentURI() {
     $menu = getMenu();
-    if (array_key_exists($_SERVER['REQUEST_URI'], $menu)) {
+    $metaMenu = getMetaMenu();
+    if ((array_key_exists($_SERVER['REQUEST_URI'], $menu)) || (array_key_exists($_SERVER['REQUEST_URI'], $metaMenu))) {
         return $_SERVER['REQUEST_URI'];
     } else {
-        foreach (array_keys(getMenu()) as $href) {
+        foreach (array_merge(array_keys($menu), array_keys($metaMenu)) as $href) {
             if (preg_match("@^$href@", $_SERVER['REQUEST_URI'])) {
                 return $href;
             }

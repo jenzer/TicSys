@@ -5,7 +5,7 @@ class ContactInitView extends View {
     public function display() {
         echo "<h1>Kontakt</h1>";
         if (!empty($this->notification)) {
-            echo "<p>{$this->notification}</p>";
+            echo "<p class=\"notification\">{$this->notification}</p>";
         }
         echo <<<FORM
         <form id="contactform" action="{$this->contactUri}" method="post" name="contactform">
@@ -25,8 +25,8 @@ class ContactInitView extends View {
             <label for="contactform-message" class="required">Mitteilung</label>
             <textarea id="contactform-message" name="message" rows="8" cols="50" required {$this->messageClasses}>{$this->message}</textarea>
 
-            <label for="contactform-last_name">Name</label>
-            <input type="text" id="contactform-last_name" name="last_name" {$this->validatedlastName}>
+            <label for="contactform-lastname">Name</label>
+            <input type="text" id="contactform-lastname" name="lastname" {$this->validatedlastName}>
 
             <label for="contactform-first_name">Vorname</label>
             <input type="text" id="contactform-first_name" name="first_name" {$this->validatedFirstName}>

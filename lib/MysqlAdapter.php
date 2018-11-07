@@ -7,12 +7,14 @@ final class MysqlAdapter {
     private $password;
     private $db;
     private $con;
+    private $log;
 
     function __construct($host, $user, $password, $db) {
         $this->host = $host;
         $this->user = $user;
         $this->password = $password;
         $this->db = $db;
+        $this->log = new Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'] . '/logs/', Psr\Log\LogLevel::INFO);
 
         $this->open();
     }
@@ -47,6 +49,37 @@ final class MysqlAdapter {
         }
         $res->free();
         return $list;
+    }
+
+    public function isUsernameAvailable($username) {
+        $res = $this->con->query("SELECT username FROM customers WHERE username='$username'");
+        if ($res->num_rows > 0) {
+            $res->free();
+            return false;
+        }
+        return true;
+    }
+    
+    public function insertCustomer(Customer $customer) {
+        $sql = "INSERT INTO customers ";
+        $sql .= "(username, password, lastname, firstname, phone, email, date) ";
+        $sql .= "VALUES (";
+        $sql .= "'{$customer->getUserName()}', ";
+        $sql .= "'{$customer->getCipherPassword()}', ";
+        $sql .= "'".addslashes($customer->getLastName())."', ";
+        $sql .= "'".addslashes($customer->getFirstName())."', ";
+        $sql .= "'".addslashes($customer->getPhone())."', ";
+        $sql .= "'".addslashes($customer->getEmail())."', ";
+        $sql .= "now())";
+        if ($this->con->query($sql)) {
+            $id = $this->con->insert_id;
+            $customer->setId($id);
+            $this->log->info("New customer successfully stored to database: $customer");
+            return $id;
+        } else {
+            $this->log->error("Error: {$this->con->error}, sql: {$sql}");
+        }
+        return 0;
     }
 
     public function __sleep() {
