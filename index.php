@@ -2,6 +2,7 @@
 <?php
 include_once 'config/config.php';
 require 'vendor/autoload.php';
+session_start();
 ?>
 
 <html lang="de">
@@ -31,7 +32,12 @@ require 'vendor/autoload.php';
                         $counter = 0;
                         foreach ($metaMenu as $href => $title) {
                             $counter += 1;
-                            echo "<li><a href=\"$href\">$title</a>";
+                            if (($href == URI_LOGIN) && (!empty($_SESSION['user_name']))) { // logged in
+                                echo "<li><strong>{$_SESSION['customer_name']}</strong> <a href=\"" . URI_LOGOUT . "\">Logout</a>";
+                            } else {
+                                echo "<li><a href=\"$href\">$title</a>";
+                            }
+
                             if ($counter < $metaMenuCount) {
                                 echo "|";
                             }
@@ -78,6 +84,10 @@ require 'vendor/autoload.php';
                         include_once 'controller/LoginController.php';
                         $controller = new LoginController();
                         break;
+                    case URI_LOGOUT:
+                        include_once 'controller/LogoutController.php';
+                        $controller = new LogoutController();
+                        break;
                     default :
                         include_once 'controller/HomeController.php';
                         $controller = new HomeController();
@@ -120,13 +130,19 @@ function getMetaMenu() {
     );
 }
 
+function getSpecialRoutes() {
+    return array(URI_LOGOUT);
+}
+
 /**
  * @return string the requested menu item URI
  */
 function getCurrentURI() {
     $menu = getMenu();
     $metaMenu = getMetaMenu();
-    if ((array_key_exists($_SERVER['REQUEST_URI'], $menu)) || (array_key_exists($_SERVER['REQUEST_URI'], $metaMenu))) {
+    if ((array_key_exists($_SERVER['REQUEST_URI'], $menu)) ||
+            (array_key_exists($_SERVER['REQUEST_URI'], $metaMenu)) || 
+            (in_array($_SERVER['REQUEST_URI'], getSpecialRoutes()))) {
         return $_SERVER['REQUEST_URI'];
     } else {
         foreach (array_merge(array_keys($menu), array_keys($metaMenu)) as $href) {

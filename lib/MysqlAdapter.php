@@ -14,7 +14,7 @@ final class MysqlAdapter {
         $this->user = $user;
         $this->password = $password;
         $this->db = $db;
-        $this->log = new Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'] . '/logs/', Psr\Log\LogLevel::INFO);
+        $this->log = new KLogger($_SERVER['DOCUMENT_ROOT'] . '/logs/', KLogger::INFO);
 
         $this->open();
     }
@@ -59,25 +59,44 @@ final class MysqlAdapter {
         }
         return true;
     }
-    
+
+    public function getUserByUsername($username) {
+        $res = $this->con->query("SELECT * FROM customers WHERE username='$username' AND state='" . Customer::STATE_ACTIVE . "'");
+        if ($row = $res->fetch_assoc()) {
+            $customer = new Customer($row['id']);
+            $customer->setUserName($row['username']);
+            $customer->setCipherPassword($row['password']);
+            $customer->setLastName($row['lastname']);
+            $customer->setFirstName($row['firstname']);
+            $customer->setPhone($row['phone']);
+            $customer->setEmail($row['email']);
+            $customer->setState($row['state']);
+            $customer->setRegistrationDate($row['date']);
+            
+            $res->free();
+            return $customer;
+        }
+        return null;
+    }
+
     public function insertCustomer(Customer $customer) {
         $sql = "INSERT INTO customers ";
         $sql .= "(username, password, lastname, firstname, phone, email, date) ";
         $sql .= "VALUES (";
         $sql .= "'{$customer->getUserName()}', ";
         $sql .= "'{$customer->getCipherPassword()}', ";
-        $sql .= "'".addslashes($customer->getLastName())."', ";
-        $sql .= "'".addslashes($customer->getFirstName())."', ";
-        $sql .= "'".addslashes($customer->getPhone())."', ";
-        $sql .= "'".addslashes($customer->getEmail())."', ";
+        $sql .= "'" . addslashes($customer->getLastName()) . "', ";
+        $sql .= "'" . addslashes($customer->getFirstName()) . "', ";
+        $sql .= "'" . addslashes($customer->getPhone()) . "', ";
+        $sql .= "'" . addslashes($customer->getEmail()) . "', ";
         $sql .= "now())";
         if ($this->con->query($sql)) {
             $id = $this->con->insert_id;
             $customer->setId($id);
-            $this->log->info("New customer successfully stored to database: $customer");
+            $this->log->logInfo("New customer successfully stored to database: $customer");
             return $id;
         } else {
-            $this->log->error("Error: {$this->con->error}, sql: {$sql}");
+            $this->log->logError("Error: {$this->con->error}, sql: {$sql}");
         }
         return 0;
     }

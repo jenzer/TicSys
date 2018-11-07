@@ -3,6 +3,8 @@
 class Customer {
 
     const PASS_SALT = "TS";
+    const STATE_ACTIVE = "active";
+    const STATE_INACTIVE = "inactive";
     const USERNAME_REGEX = "^[a-zA-z0-9_\-]{3,10}$";
 
     private $id;
@@ -46,13 +48,20 @@ class Customer {
 
     public function getCipherPassword() {
         if ((empty($this->cipherPassword)) && (!empty($this->password))) {
-            $this->cipherPassword = md5(self::PASS_SALT . $this->password . self::PASS_SALT);
+            $this->cipherPassword = $this->cypherPassword($this->password);
         }
         return $this->cipherPassword;
     }
 
     public function setCipherPassword($cipherPassword) {
         $this->cipherPassword = $cipherPassword;
+    }
+    
+    public function isPasswordValid($password) {
+        if($this->cypherPassword($password) == $this->getCipherPassword()) {
+            return true;
+        }
+        return false;
     }
 
     public function getLastName() {
@@ -105,6 +114,10 @@ class Customer {
 
     public function __toString() {
         return "ID: {$this->id}, Username: {$this->userName}, Name: {$this->lastName} {$this->firstName}, Email: {$this->email}";
+    }
+    
+    private function cypherPassword($password) {
+        return md5(self::PASS_SALT . $password . self::PASS_SALT);
     }
 
 }
