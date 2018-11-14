@@ -1,16 +1,19 @@
+html {
+    background-color: #E4E1D9;
+}
 body {
     font-family: Georgia, serif;
     font-size: 100%;
     line-height: 1.5em;
     color: #5C5B5B;
-    background: #e0dcdc url("/images/body-bg.png") repeat-x top left;
+    background: linear-gradient(to bottom, #FFFFFF 0%,#E4E1D9 60%);
 }
 
 #wrap {
     width: 960px;
     margin: 0 auto;
     background-color: white;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 
 h1,h2,h3,h4 {
@@ -51,7 +54,9 @@ a, a:focus, a:hover {
 #menu a, #meta-navigation a {
     color: #ffffff;
     text-decoration: none;
-    padding: 1px 4px;
+    padding: 2px 5px;
+    text-shadow: #444 2px 2px 1px;
+    transition: background-color 300ms linear;
 }
 
 #menu a.selected, #menu a:hover {
@@ -94,7 +99,13 @@ a, a:focus, a:hover {
 }
 .event-info.list img {
     float: left;
-    margin: 0 10px 10px 0;
+    margin: 0 20px 10px 0;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+}
+
+.event-info.list img:hover {
+    /*transform: scale(1.5);*/
+    transform: rotate(6deg);
 }
 
 .event-info.list .order {
@@ -127,6 +138,7 @@ a, a:focus, a:hover {
 #contactform textarea, #registrationform textarea, #loginform textarea {
     display: block;
     margin-bottom: 15px;
+    transition: 500ms ease;
 }
 
 #contactform input[type="text"], #registrationform input[type="text"], #loginform input[type="text"],
@@ -134,7 +146,7 @@ a, a:focus, a:hover {
 #contactform input[type="email"], #registrationform input[type="email"], #loginform input[type="email"], 
 #contactform input[type="password"], #registrationform input[type="password"], #loginform input[type="password"], 
 #contactform textarea, #registrationform textarea, #loginform textarea {
-    width: 400px;
+    width: 300px;
     border: 1px solid #a0a0a0;
 }
 
@@ -164,8 +176,10 @@ a, a:focus, a:hover {
     content: " *";
 }
 
-input:focus, textarea:focus {
+#contactform input:focus, #registrationform input:focus, #loginform input:focus,
+#contactform textarea:focus, #registrationform textarea:focus, #loginform textarea:focus {
     box-shadow: 0 0 5px 0 #2a9898;
+    width: 320px;
 }
 
 #contactform input[type="submit"], #registrationform input[type="submit"], #loginform input[type="submit"] {
@@ -181,19 +195,24 @@ input:focus, textarea:focus {
 }
 
 #faqs dt {
+    width: 892px;
     background-color: #bebebe;
     padding: 4px;
     border-bottom: 1px solid white;
     cursor: pointer;
 }
 #faqs dd {
+    width: 900px;
     display: none;
     background-color: #dfdfdf;
     margin: 0;
-    padding: 8px 4px;
     border-bottom: 1px solid white;
 }
-
+#faqs dd p {
+    margin: 0;
+    width: 892px;
+    padding: 8px 4px;
+}
 /* HOME SLIDER */
 #homeslider-wrap {
     position: relative;
@@ -213,6 +232,7 @@ input:focus, textarea:focus {
     float: left;
     width: 600px;
     position: relative;
+    left: 0;
 }
 #homeslider li a, #homeslider li a img {
     display: block;
@@ -252,9 +272,52 @@ input:focus, textarea:focus {
 
 
 #feedback {
+    display: none;
     position: fixed;
     right: 0px;
     top: 0px;
+}
+
+#login-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+#login-overlay > div {
+    border: 12px solid #739C02;
+    position: absolute;
+    top: 25%;
+    width: 520px;
+    height: 260px;
+    left: 50%;
+    margin-left: -282px;
+    padding: 20px;
+    opacity: 1;
+    background: #e0dcdc url("/images/body-bg.png") repeat-x top left;
+    animation: bordercoloranim 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bordercoloranim {
+    0%  {border-color: #739c02;} 
+    50%  {border-color: #abe803;} 
+    100% {border-color: #739c02;}
+}
+
+#close-login-overlay {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    width: 32px;
+    height: 32px;
+    background-image: url("/images/close.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .clear {

@@ -1,12 +1,28 @@
 <?php
 
-include_once 'controller/FormController.php';
-include_once 'model/Customer.php';
-include_once 'view/login/LoginInitView.php';
-include_once 'view/login/LoginConfirmationView.php';
-include_once 'lib/MysqlAdapter.php';
+include_once "{$_SERVER['DOCUMENT_ROOT']}/controller/FormController.php";
+include_once "{$_SERVER['DOCUMENT_ROOT']}/model/Customer.php";
+include_once "{$_SERVER['DOCUMENT_ROOT']}/view/login/LoginInitView.php";
+include_once "{$_SERVER['DOCUMENT_ROOT']}/view/login/LoginConfirmationView.php";
+include_once "{$_SERVER['DOCUMENT_ROOT']}/lib/MysqlAdapter.php";
 
 class LoginController extends FormController {
+    
+    /**
+     * @override
+     */
+    public function route() {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                $this->init();
+                break;
+            case 'POST':
+                $this->create();
+                break;
+            default:
+                break;
+        }
+    }
 
     protected function init() {
         $view = new LoginInitView();
@@ -18,6 +34,7 @@ class LoginController extends FormController {
     }
 
     protected function create() {
+        $log = new \Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'] . '/logs/', Psr\Log\LogLevel::INFO);
         if ((!empty($_POST['login'])) && (empty($_POST['name']))) {
             // Form submitted by human
             // validate form
@@ -33,9 +50,9 @@ class LoginController extends FormController {
                         $_SESSION['user_name'] = $customer->getUserName();
                         $_SESSION['customer_name'] = $customer->getFirstName() . " " . $customer->getLastName();
                         setcookie('user_name', $customer->getUserName(), time() + 60 * 60 * 24 * 90, '/');
-
-                        header("HTTP/1.1 303 See Other");
-                        header("Location: " . URI_LOGIN . "/success");
+                        
+                        $log->info("Customer successfully logged in: $customer");
+                        echo "success";
                         exit();
                     } else {
                         $this->notification = "Benutzername oder Passwort ist falsch.";

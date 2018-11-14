@@ -14,7 +14,7 @@ final class MysqlAdapter {
         $this->user = $user;
         $this->password = $password;
         $this->db = $db;
-        $this->log = new KLogger($_SERVER['DOCUMENT_ROOT'] . '/logs/', KLogger::INFO);
+        $this->log = new \Katzgrau\KLogger\Logger($_SERVER['DOCUMENT_ROOT'] . '/logs/', Psr\Log\LogLevel::INFO);
 
         $this->open();
     }
@@ -93,7 +93,7 @@ final class MysqlAdapter {
         if ($this->con->query($sql)) {
             $id = $this->con->insert_id;
             $customer->setId($id);
-            $this->log->logInfo("New customer successfully stored to database: $customer");
+            $this->log->info("New customer successfully stored to database: $customer");
             return $id;
         } else {
             $this->log->logError("Error: {$this->con->error}, sql: {$sql}");

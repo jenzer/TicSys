@@ -18,7 +18,7 @@ session_start();
         <script src="/js/timer.js"></script>
     </head>
     <body onload="setDateTime()">
-
+        <div id="login-overlay"><div> </div></div>
         <div id="wrap">
             <div id="header">
                 <div id="logo">
@@ -34,10 +34,11 @@ session_start();
                             $counter += 1;
                             if (($href == URI_LOGIN) && (!empty($_SESSION['user_name']))) { // logged in
                                 echo "<li><strong>{$_SESSION['customer_name']}</strong> <a href=\"" . URI_LOGOUT . "\">Logout</a>";
+                            } elseif ($href == URI_LOGIN) {
+                                echo "<li><a id=\"login-link\" href=\"$href\">$title</a>";
                             } else {
                                 echo "<li><a href=\"$href\">$title</a>";
                             }
-
                             if ($counter < $metaMenuCount) {
                                 echo "|";
                             }
@@ -141,7 +142,7 @@ function getCurrentURI() {
     $menu = getMenu();
     $metaMenu = getMetaMenu();
     if ((array_key_exists($_SERVER['REQUEST_URI'], $menu)) ||
-            (array_key_exists($_SERVER['REQUEST_URI'], $metaMenu)) || 
+            (array_key_exists($_SERVER['REQUEST_URI'], $metaMenu)) ||
             (in_array($_SERVER['REQUEST_URI'], getSpecialRoutes()))) {
         return $_SERVER['REQUEST_URI'];
     } else {
