@@ -12,22 +12,22 @@ $(document).ready(function () {
     $(document).on('submit', '#loginform', function (event) {
         event.preventDefault();
         $.post($("#loginform").attr('action'), $("#loginform").serialize(),
-                function (response) {
-                    if (response == 'success') {
-                        location.href = "/";
-                    } else {
-                        $('#login-overlay > div').html(response);
-                        $('#login-overlay > div').animate({
-                            left: '-=30'
-                        }, 100).animate({
-                            left: '+=60'
-                        }, 100).animate({
-                            left: '-=60'
-                        }, 100).animate({
-                            left: '+=30'
-                        }, 100);
-                    }
-                });
+            function (response) {
+                if (response == 'success') {
+                    location.href = "/";
+                } else {
+                    $('#login-overlay > div').html(response);
+                    $('#login-overlay > div').animate({
+                        left: '-=30'
+                    }, 100).animate({
+                        left: '+=60'
+                    }, 100).animate({
+                        left: '-=60'
+                    }, 100).animate({
+                        left: '+=30'
+                    }, 100);
+                }
+            });
     });
 
     $(".event-info.list").hover(function () {
@@ -72,7 +72,9 @@ $(document).ready(function () {
         $("#homeslider li").promise().done(setEventInfo);
         event.preventDefault();
     });
-    setEventInfo();
+    if ($("#homeslider").length) {
+        setEventInfo();
+    }
 });
 
 function setEventInfo() {

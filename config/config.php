@@ -6,7 +6,7 @@ define('URI_EVENTS', '/events');
 define('URI_FAQ', '/faq');
 define('URI_KONTAKT', '/kontakt/new');
 define('URI_REGISTRATION', '/registration/new');
-define('URI_LOGIN', '/login/new');
+define('URI_LOGIN', 'controller/ajax/login/index.php');
 define('URI_LOGOUT', '/logout');
 
 # DB configs

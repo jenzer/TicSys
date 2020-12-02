@@ -2,4 +2,6 @@
 /nbproject/private/
 /vendor/
 /logs/
+/.idea
 composer.lock
+vhost.template.local
