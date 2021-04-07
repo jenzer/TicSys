@@ -55,7 +55,7 @@ a, a:focus, a:hover {
     color: #ffffff;
     text-decoration: none;
     padding: 2px 5px;
-    text-shadow: #444 2px 2px 1px;
+    text-shadow: #444 2px 2px 6px;
     transition: background-color 300ms linear;
 }
 

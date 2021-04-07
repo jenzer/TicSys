@@ -48,14 +48,15 @@ class RegistrationController extends FormController {
                             $customer->setFirstName($_POST['first_name']);
                             $customer->setPhone($_POST['phone']);
                             $customer->setEmail($_POST['email']);
-                            $id = $mysqlAdapter->insertCustomer($customer);
-                            if ($id > 0) {
+                            try {
+                                $mysqlAdapter->insertCustomer($customer);
                                 header("HTTP/1.1 303 See Other");
                                 header("Location: " . URI_REGISTRATION . "/success");
                                 exit();
-                            } else {
+                            } catch (Exception $e) {
                                 $this->notification = "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später wieder.";
                             }
+
                         } else {
                             $this->notification = "Die Passworte stimmen nicht überein.";
                         }

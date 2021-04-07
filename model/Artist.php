@@ -2,16 +2,18 @@
 
 class Artist {
 
+    const THUMB_WIDTH = 200;
+    const THUMB_HEIGHT = 140;
+
     private $name;
     private $image;
     private $imageThumb;
     private $description;
     private $videos = array();
 
-    function __construct($name = "", $image = "", $imageThumb = "", $description = "") {
+    function __construct($name = "", $image = "", $description = "") {
         $this->name = $name;
         $this->image = $image;
-        $this->imageThumb = $imageThumb;
         $this->description = $description;
     }
 
@@ -31,8 +33,31 @@ class Artist {
         $this->image = $image;
     }
 
+//    public function getImageThumb() {
+//        return $this->imageThumb;
+//    }
+
     public function getImageThumb() {
-        return $this->imageThumb;
+        $imagePath = "{$_SERVER['DOCUMENT_ROOT']}/resources/$this->image";
+        $thumbName = preg_replace('/\-600x420\./', "-" . self::THUMB_WIDTH . "x" . self::THUMB_HEIGHT . ".", $this->image);
+        $thumbPath = "{$_SERVER['DOCUMENT_ROOT']}/resources/$thumbName";
+        if (file_exists($thumbPath)) {
+            return $thumbName;
+        } elseif (file_exists($imagePath)) {
+            $imgSize = getimagesize($imagePath);
+            if (!empty($imgSize)) {
+                if ($imgSize['mime'] == 'image/jpeg') {
+                    $image = imagecreatefromjpeg($imagePath);
+                    $thumbnail = imagecreatetruecolor(self::THUMB_WIDTH, self::THUMB_HEIGHT);
+                    imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, self::THUMB_WIDTH, self::THUMB_HEIGHT, $imgSize[0], $imgSize[1]);
+                    imagejpeg($thumbnail, $thumbPath, 100);
+                    imagedestroy($image);
+                    imagedestroy($thumbnail);
+                    return $thumbName;
+                }
+            }
+        }
+        return "";
     }
 
     public function setImageThumb($imageThumb) {
